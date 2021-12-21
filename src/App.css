@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.todo-left {
+  color: rgb(32, 201, 151);
+  font-weight: bold;
+}

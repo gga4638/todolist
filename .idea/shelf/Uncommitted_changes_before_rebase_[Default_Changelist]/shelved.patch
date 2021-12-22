@@ -1,0 +1,19 @@
+Index: todolist/src/component/TodoItem.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\r\n\r\nexport default function TodoItem(props) {\r\n    const handleChange = e => {\r\n        console.log(props.item.id + \" : \" + e.currentTarget.checked);\r\n        props.check(e.currentTarget.checked);\r\n    }\r\n\r\n    return (\r\n        <li key={props.item.id}>\r\n            <input type=\"checkbox\" name=\"todo\" onChange={handleChange} />\r\n            <label>{props.item.text}</label>\r\n            <button> X</button>\r\n            <br />\r\n        </li>\r\n    );\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/todolist/src/component/TodoItem.js b/todolist/src/component/TodoItem.js
+--- a/todolist/src/component/TodoItem.js	(revision fcd02affaa0e4ef5ffa6970889f33ee6abd356e6)
++++ b/todolist/src/component/TodoItem.js	(date 1640076462408)
+@@ -2,7 +2,7 @@
+ 
+ export default function TodoItem(props) {
+     const handleChange = e => {
+-        console.log(props.item.id + " : " + e.currentTarget.checked);
++        console.log(props.item.id + ": " + e.currentTarget.checked);
+         props.check(e.currentTarget.checked);
+     }
+ 

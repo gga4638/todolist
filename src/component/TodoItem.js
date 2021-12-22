@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TodoItem(props) {
     const handleChange = e => {
-        console.log(props.item.id + " : " + e.currentTarget.checked);
+        console.log(props.item.id + ": " + e.currentTarget.checked);
         props.check(e.currentTarget.checked);
     }
 

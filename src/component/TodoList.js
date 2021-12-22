@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from "react";
 import TodoItem from "./TodoItem";
 
-export default function TodoList(props) {
-    const [check, setCheck] = useState(false);
+export default function TodoList({items, setItems}) {
+    const onRemove = (id) => {
+        setItems(items.filter(item => item.id !== id));
+    }
 
-    useEffect(() => {
-        console.log("변경 : " + check);
-        });
+    const onCheck = (e) => {
+        const cnt = items.filter(item => item.check == false).length;
+        //console.log( e.currentTarget.checked);
+        //console.log("개수 : " + cnt);
+    }
 
     return (
         <ul>
-            {props.items.map(item => (
-                <TodoItem item={item} check={setCheck}/>
+            {items.map(item => (
+                <TodoItem item={item} onRemove={onRemove} setItems={setItems} onCheck={onCheck}/>
             ))}
         </ul>
     );

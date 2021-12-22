@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import TodoList from './component/TodoList';
 import TodoHead from './component/TodoHead';
 
@@ -14,7 +14,8 @@ function App() {
         }
         const newItem = {
             text: text,
-            id: Date.now()
+            id: Date.now(),
+            check: false
         };
         setItems(items.concat(newItem));
         setText('');
@@ -28,7 +29,7 @@ function App() {
     <div className="App">
       <div className='todo'>
         <TodoHead count={items.length}/>
-        <TodoList items={items} />
+        <TodoList items={items} setItems={setItems} />
         <form onSubmit={handleSubmit}>
             <input
                 onChange={handleChange}

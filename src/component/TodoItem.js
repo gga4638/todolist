@@ -12,7 +12,6 @@ export default function TodoItem({item, onRemove, onCheck}) {
         //console.log(item.id + ": " + item.check);
     }
 
-
     return (
         <li key={item.id}>
             <input type="checkbox" name="todo" onChange={handleChange} onClick={onCheck}/>

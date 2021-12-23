@@ -6,10 +6,11 @@ import TodoHead from './component/TodoHead';
 function App() {
     const [items, setItems] = useState([]);
     const [text, setText] = useState('');
+    const [todoCount, setTodoCount] = useState(0);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(text.length == 0 ){
+        if(text.length === 0 ){
             return;
         }
         const newItem = {
@@ -25,10 +26,14 @@ function App() {
         setText(e.target.value);
     }
 
+    useEffect(() => {
+        setTodoCount(items.filter(item => item.check === false).length);
+    });
+
     return (
     <div className="App">
       <div className='todo'>
-        <TodoHead count={items.length}/>
+        <TodoHead count={todoCount}/>
         <TodoList items={items} setItems={setItems} />
         <form onSubmit={handleSubmit}>
             <input

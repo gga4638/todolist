@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import TodoItem from "./TodoItem";
 
 export default function TodoList({items, setItems}) {
@@ -6,16 +6,26 @@ export default function TodoList({items, setItems}) {
         setItems(items.filter(item => item.id !== id));
     }
 
-    const onCheck = (e) => {
-        const cnt = items.filter(item => item.check == false).length;
-        //console.log( e.currentTarget.checked);
-        //console.log("개수 : " + cnt);
+    const onCheck = (id, e) => {
+        const checkItem = items.filter(item => item.id === id)[0];
+
+        // checkItem 객체 check : t(체크)/f(체크 안됨) 지정
+        checkItem.check = e.currentTarget.checked;
+
+        // 체크박스 클릭으로 변경 된 item 교체
+        setItems(items.filter((item) => {
+            if(item.id === checkItem.id) {
+                item = checkItem;
+            }
+            return item;
+        }));
     }
 
     return (
         <ul>
             {items.map(item => (
-                <TodoItem item={item} onRemove={onRemove} setItems={setItems} onCheck={onCheck}/>
+                <TodoItem item={item} onRemove={onRemove} setItems={setItems} onCheck={onCheck}
+                          key={item.id}/>
             ))}
         </ul>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Day() {
+function Day() {
     let today = new Date();
     const week = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -11,3 +11,5 @@ export default function Day() {
         </>
     );
 }
+
+export default React.memo(Day);

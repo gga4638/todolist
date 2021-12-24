@@ -22,11 +22,11 @@ export default function TodoList({items, setItems}) {
     }
 
     return (
-        <ul>
+        <>
             {items.map(item => (
                 <TodoItem item={item} onRemove={onRemove} setItems={setItems} onCheck={onCheck}
                           key={item.id}/>
             ))}
-        </ul>
+        </>
     );
 }

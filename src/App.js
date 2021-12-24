@@ -2,50 +2,31 @@ import './App.css';
 import React, {useEffect, useState} from "react";
 import TodoList from './component/TodoList';
 import TodoHead from './component/TodoHead';
+import AddTodoItem from "./component/AddTodoItem";
 
 function App() {
     const [items, setItems] = useState([]);
-    const [text, setText] = useState('');
     const [todoCount, setTodoCount] = useState(0);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if(text.length === 0 ){
-            return;
-        }
-        const newItem = {
-            text: text,
-            id: Date.now(),
-            check: false
-        };
-        setItems(items.concat(newItem));
-        setText('');
-    }
-
-    const handleChange = (e) => {
-        setText(e.target.value);
-    }
 
     useEffect(() => {
         setTodoCount(items.filter(item => item.check === false).length);
-    });
+    },[items]);
+
+    // 현재 컴포넌트 간에 props를 일일이 전달하고 있다. 어쩐지 뭔가 이상했어...
+    // 리액트 컨텍스트를 사용하여 props drilling 현상을 개선하자!
+    // 컨텍스트 팩토리 함수 createContext() 를 호출
+    // 참고 : https://jeonghwan-kim.github.io/dev/2021/05/05/react-context.html
 
     return (
-    <div className="App">
-      <div className='todo'>
-        <TodoHead count={todoCount}/>
-        <TodoList items={items} setItems={setItems} />
-        <form onSubmit={handleSubmit}>
-            <input
-                onChange={handleChange}
-                value={text}
-            />
-            <button>
-                등록 #{items.length + 1}
-            </button>
-        </form>
-      </div>
-    </div>
+        <div className="App">
+          <div className='todo'>
+            <TodoHead todoCount={todoCount}/>
+            <div className="todo-body">
+                <TodoList items={items} setItems={setItems} />
+            </div>
+            <AddTodoItem items={items} setItems={setItems} />
+          </div>
+        </div>
     );
 }
 

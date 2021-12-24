@@ -1,43 +1,180 @@
-.App {
-  text-align: center;
+body {
+  background-color: rgb(233, 236, 239);
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+p, h1 {
+  margin: 0px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+ul {
+  margin: 0px;
+  padding: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input {
+  border: 1px solid #dddddd;
+}
+
+input:focus {
+  outline: none;
+}
+
+.todo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  background-color: white;
+  margin: 90px auto 0;
+  width: 512px;
+  height: 768px;
+  border-radius: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.todo-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 32px 48px;
+  overflow-y: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.todo-header {
+  border-bottom: 1px solid #dddddd;
+  padding: 48px 32px 24px
 }
 
 .todo-left {
+  margin-top: 30px;
   color: rgb(32, 201, 151);
   font-weight: bold;
+  font-size: 18px;
+}
+
+.today {
+  font-size: 36px;
+  color: #323232;
+}
+
+.today + p {
+  color: #999999;
+  font-size: 1.3rem;
+}
+
+.todo-footer {
+  display: none;
+  background-color: rgb(248, 249, 250);
+  align-items: center;
+  padding: 32px 32px 72px;
+  border-top: 1px solid #dddddd;
+  position: relative;
+  bottom: -64px;
+  border-radius: 0 0 20px 20px;
+
+}
+
+.todo-footer button {
+  display: none;
+}
+
+.visible {
+  display: block !important;
+}
+
+.footer-toggle .bi-plus {
+    color: white;
+}
+
+.item-input {
+  flex: 1;
+}
+
+.item-input input {
+  font-size: 18px;
+  padding: 10px;
+  width: 95%;
+}
+
+#input-toggle {
+  display: none;
+}
+
+#input-toggle + label {
+  position: relative;
+  bottom: -35px;
+}
+
+#input-toggle + label .bi-plus {
+  border-radius: 50%;
+  background-color: rgb(32, 201, 151);
+  transition: all ease 0.25s;
+}
+
+#input-toggle:checked + label .bi-plus {
+  transform: rotate(45deg);
+  background-color: rgb(255, 107, 107);
+}
+
+.footer-toggle {
+  text-align: center;
+}
+
+.todo-item {
+  padding: 12px 0px;
+  display: flex;
+}
+
+.todo-item input {
+  /*margin-right: 15px;*/
+  display: none;
+}
+
+.todo-item input:checked + .item-check-circle {
+  border: 1px solid rgb(32, 201, 151);
+}
+
+.todo-item input:checked + .item-check-circle .bi-check2 {
+  color: rgb(32, 201, 151);
+}
+
+.todo-item label:not(.item-check-circle) {
+  flex: 1;
+  font-size: 21px;
+}
+
+.todo-item input:checked ~ label:not(.item-check-circle) {
+  color: #dddddd;
+}
+
+.bi-trash2-fill {
+  visibility: hidden;
+  color: #dddddd;
+}
+
+.todo-item:hover .bi-trash2-fill {
+  visibility: visible;
+}
+
+.bi-trash2-fill:hover {
+  color: rgb(255, 107, 107);
+}
+
+.todo-item div {
+  border: 1px solid rgb(32, 201, 151);
+  border-radius: 50%;
+}
+
+.todo-item  .item-check-circle {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  margin-right: 15px;
+  width: 28px;
+  height: 28px;
+}
+
+.bi-check2 {
+  position: relative;
+  left: 2px;
+  top: 4px;
+  color: #dddddd;
 }

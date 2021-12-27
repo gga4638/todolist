@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function TodoLeft({todoCount}) {
+function TodoLeft({todoCount}) {
 
     return (
         <p className="todo-left">
@@ -8,3 +8,5 @@ export default function TodoLeft({todoCount}) {
         </p>
     );
 }
+
+export default React.memo(TodoLeft);

@@ -21,3 +21,5 @@ export default function TodoItem({item, onRemove, onCheck}) {
         </div>
     );
 }
+
+//export const MemoizedTodoItem = React.memo(TodoItem);

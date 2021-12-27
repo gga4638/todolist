@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 
-export default function AddTodoItem({items, setItems}) {
+function AddTodoItem({items, setItems}) {
     const [text, setText] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const inputFocus = useRef(null);
@@ -24,9 +24,8 @@ export default function AddTodoItem({items, setItems}) {
     const visibleChange = (e) => { setIsVisible(e.currentTarget.checked); }
 
     useEffect(() => {
-        if(isVisible) {
-            inputFocus.current.focus();
-        }
+        if(!isVisible) { return; }
+        inputFocus.current.focus();
     },[isVisible]);
 
     return (
@@ -59,3 +58,5 @@ export default function AddTodoItem({items, setItems}) {
         </>
     );
 }
+
+export default  React.memo(AddTodoItem);

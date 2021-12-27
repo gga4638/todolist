@@ -1,32 +1,35 @@
 import React from "react";
 import TodoItem from "./TodoItem";
 
-export default function TodoList({items, setItems}) {
+function TodoList({items, setItems, setTodoCount}) {
     const onRemove = (id) => {
         setItems(items.filter(item => item.id !== id));
     }
 
     const onCheck = (id, e) => {
-        const checkItem = items.filter(item => item.id === id)[0];
+        //setItems(items.map(item => item.id === id ? {...item, check: !item.check} : item));
+        items.forEach(item => {
+                if(item.id === id) {
+                    item.check = e.currentTarget.checked; // check : t(체크)/f(체크 안됨) 지정
+                    return;
+                }
+        });
 
-        // checkItem 객체 check : t(체크)/f(체크 안됨) 지정
-        checkItem.check = e.currentTarget.checked;
-
-        // 체크박스 클릭으로 변경 된 item 교체
-        setItems(items.filter((item) => {
-            if(item.id === checkItem.id) {
-                item = checkItem;
-            }
-            return item;
-        }));
+        // 할일 갯수 초기화
+        setTodoCount(items.filter(item => item.check === false).length);
     }
 
     return (
         <>
             {items.map(item => (
-                <TodoItem item={item} onRemove={onRemove} setItems={setItems} onCheck={onCheck}
-                          key={item.id}/>
+                <TodoItem item={item}
+                          onRemove={onRemove}
+                          onCheck={onCheck}
+                          key={item.id}
+                />
             ))}
         </>
     );
 }
+
+export default React.memo(TodoList);

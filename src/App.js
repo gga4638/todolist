@@ -31,7 +31,7 @@ function App() {
           <div className='todo'>
             <TodoHead todoCount={todoCount}/>
             <div className="todo-body">
-                <TodoList items={items} setItems={setItems} />
+                <TodoList items={items} setItems={setItems} setTodoCount={setTodoCount}/>
             </div>
             <AddTodoItem items={items} setItems={setItems} />
           </div>

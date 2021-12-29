@@ -1,9 +1,13 @@
 import React, {useEffect, useRef, useState} from "react";
+import {useTodoDispatch, useTodoNextId} from "../TodoContext";
 
-function AddTodoItem({items, setItems}) {
+function AddTodoItem() {
     const [text, setText] = useState('');
     const [isVisible, setIsVisible] = useState(false);
     const inputFocus = useRef(null);
+    const dispatch = useTodoDispatch();
+    const nextId = useTodoNextId();
+    console.log("nextID : ", nextId.current.value);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -13,9 +17,13 @@ function AddTodoItem({items, setItems}) {
         const newItem = {
             text: text,
             id: Date.now(),
+            //id: nextId.current = nextId + 1,
             check: false
         };
-        setItems(items.concat(newItem));
+        dispatch({
+            type: 'CREATE',
+            item: newItem
+        });
         setText('');
         setIsVisible(false);
     }
@@ -40,7 +48,8 @@ function AddTodoItem({items, setItems}) {
                             ref={inputFocus}
                         />
                         <button>
-                            등록 #{items.length + 1}
+                            등록
+                            {/*#{items.length + 1}*/}
                         </button>
                     </form>
                 </div>

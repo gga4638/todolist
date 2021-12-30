@@ -9,7 +9,7 @@ function AddTodoItem() {
     const dispatch = useTodoDispatch();
     const nextId = useTodoNextId();
 
-    const handleSubmit = (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         if(text.length === 0 ) {
             return;
@@ -28,8 +28,8 @@ function AddTodoItem() {
         setIsVisible(false);
     }
 
-    const handleChange = (e) => { setText(e.target.value); }
-    const visibleChange = (e) => { setIsVisible(e.currentTarget.checked); }
+    const onChange = (e) => { setText(e.target.value); }
+    const onVisibleChange = (e) => { setIsVisible(e.currentTarget.checked); }
 
     useEffect(() => {
         if(!isVisible) { return; }
@@ -40,9 +40,9 @@ function AddTodoItem() {
         <>
             <div className= {`todo-footer ${isVisible ? 'visible' : ''}`}>
                 <div className="item-input">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={onSubmit}>
                         <input
-                            onChange={handleChange}
+                            onChange={onChange}
                             value={text}
                             placeholder="할 일을 입력 후, Enter 를 누르세요"
                             ref={inputFocus}
@@ -54,7 +54,7 @@ function AddTodoItem() {
                 </div>
             </div>
             <div className="footer-toggle">
-                <input type="checkbox" id="input-toggle" onChange={visibleChange} checked={isVisible ? true: false}/>
+                <input type="checkbox" id="input-toggle" onChange={onVisibleChange} checked={isVisible ? true: false}/>
                 <label className="" htmlFor="input-toggle">
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
                          className="bi bi-plus" viewBox="0 0 16 16">

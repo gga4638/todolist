@@ -1,19 +1,19 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-import {useTodoDispatch, useTodoState} from "../TodoContext";
+import {TodoProvider, useTodoDispatch, useTodoState} from "../TodoContext";
 
 function TodoList() {
     const todos = useTodoState();
 
     return (
-        <>
+        <div className="todo-body">
             {todos.map(item => (
-                <TodoItem key={item.id}
-                          id={item.id}
-                          text={item.text}
-                />
-            ))}
-        </>
+                    <TodoItem key={item.id}
+                              id={item.id}
+                              text={item.text}
+                    />
+                ))}
+        </div>
     );
 }
 

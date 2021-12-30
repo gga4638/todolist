@@ -4,25 +4,25 @@ import {useTodoDispatch, useTodoNextId} from "../TodoContext";
 function AddTodoItem() {
     const [text, setText] = useState('');
     const [isVisible, setIsVisible] = useState(false);
+
     const inputFocus = useRef(null);
     const dispatch = useTodoDispatch();
     const nextId = useTodoNextId();
-    console.log("nextID : ", nextId.current.value);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         if(text.length === 0 ) {
             return;
         }
-        const newItem = {
-            text: text,
-            id: Date.now(),
-            //id: nextId.current = nextId + 1,
-            check: false
-        };
+        nextId.current += 1;
+
         dispatch({
             type: 'CREATE',
-            item: newItem
+            item: {
+                text: text,
+                id: nextId.current,
+                check: false
+            }
         });
         setText('');
         setIsVisible(false);
@@ -49,7 +49,6 @@ function AddTodoItem() {
                         />
                         <button>
                             등록
-                            {/*#{items.length + 1}*/}
                         </button>
                     </form>
                 </div>

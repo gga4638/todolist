@@ -7,7 +7,7 @@ function todoReducer(state, action) {
         case 'CREATE':
             return state.concat(action.item);
         case 'TOGGLE':
-            return state.map(todo => todo.id === action.id ? {...todo, check: action.checked} : todo);
+            return state.map(todo => todo.id === action.id ? {...todo, check: !todo.check} : todo);
         case 'REMOVE':
             return state.filter(todo => todo.id !== action.id);
         default:
@@ -17,7 +17,7 @@ function todoReducer(state, action) {
 
 const TodoStateContext = createContext(null);
 const TodoDispatchContext = createContext(null);
-const TodoNextIdContext = createContext(0);
+const TodoNextIdContext = createContext(null);
 
 export function TodoProvider({ children }) {
     const [state, dispatch] = useReducer(todoReducer, initialTodos);

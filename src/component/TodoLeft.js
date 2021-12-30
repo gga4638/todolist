@@ -3,7 +3,7 @@ import {useTodoState} from "../TodoContext";
 
 function TodoLeft() {
     const todos = useTodoState();
-    const todoLeft = todos.filter(item => item.check === false).length;
+    const todoLeft = todos.filter(todo => todo.check === false).length;
     return (
         <p className="todo-left">
             할 일 {todoLeft}개 남음
